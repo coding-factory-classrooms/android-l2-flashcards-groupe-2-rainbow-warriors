@@ -1,8 +1,10 @@
 package com.example.flashcard_rainbowwarriors;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -28,6 +30,20 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.startButton).setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
+              AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+              builder.setCancelable(true);
+              builder.setTitle("Difficulté");
+              builder.setMessage("Choisir niveau de difficulté");
+              builder.setButton("Continue..", new DialogInterface.OnClickListener() {
+                  public void onClick(DialogInterface dialog, int which) {
+                      // here you can add functions
+                  }
+              });
+              AlertDialog dialog = builder.create();
+              dialog.show();
+
+
+
               Intent intent = new Intent(MainActivity.this, FlashcardActivity.class);
               intent.putExtra("flashcard", flashcard);
               startActivity(intent);
