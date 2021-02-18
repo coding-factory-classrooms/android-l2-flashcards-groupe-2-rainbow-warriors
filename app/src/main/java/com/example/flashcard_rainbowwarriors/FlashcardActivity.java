@@ -13,6 +13,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 
 public class FlashcardActivity extends AppCompatActivity {
 
@@ -34,8 +37,9 @@ public class FlashcardActivity extends AppCompatActivity {
 
         RadioGroup radioGroup = findViewById(R.id.answerRadioGroup);
 
-
-        for (Answer answer: flashcard.answers) {
+        ArrayList<Answer> randomizedAnswers = flashcard.answers;
+        Collections.shuffle(randomizedAnswers);
+        for (Answer answer: randomizedAnswers) {
             RadioButton radioButton = new RadioButton(this);
             radioButton.setText(answer.value);
             radioGroup.addView(radioButton);
