@@ -96,6 +96,7 @@ public class FlashcardActivity extends AppCompatActivity {
 
                 AlertDialog alert = alertDialog.create();
                 alert.show();
+                alert.setCanceledOnTouchOutside(false);
             }
         });
 
