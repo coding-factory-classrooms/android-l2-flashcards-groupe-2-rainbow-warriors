@@ -48,6 +48,7 @@ public class parsingFlashcardJSON {
                         (String) flashObj.get("questionText"),
                         (String) flashObj.get("sourceType"),
                         (String) flashObj.get("sourceName"),
+                        difficulty,
                         answers
                 );
                 flashcards.add(flashcard);

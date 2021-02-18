@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,20 +20,8 @@ public class ListQuestionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_questions);
 
-        //TODO recevoir toutes les flashcards
-
-
-
-//        Intent intent = getIntent();
-//        Flashcard flashcard = intent.getParcelableExtra("flashcard");
-
-        ArrayList<Flashcard> flashcards = new ArrayList<>();
-        ArrayList<Answer> answers = new ArrayList<>();
-        answers.add(new Answer(true, "Réponse 1"));
-        answers.add(new Answer(false, "Réponse 2"));
-        for (int i = 0; i < 30; i++) {
-            flashcards.add(new Flashcard("Question " + i, "SourceType", "SourceName", answers));
-        }
+        Intent intent = getIntent();
+        ArrayList<Flashcard> flashcards = intent.getParcelableArrayListExtra("flashcards");
 
         adapter = new ListAdapter(flashcards);
 

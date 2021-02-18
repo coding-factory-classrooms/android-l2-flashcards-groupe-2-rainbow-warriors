@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -29,14 +33,17 @@ public class FlashcardActivity extends AppCompatActivity {
         TextView questionTextView = findViewById(R.id.questionTextView);
         questionTextView.setText(flashcard.questionText);
 
-        ImageView questionPictureView = findViewById(R.id.questionPictureView);
-        //Button playSoundButton = findViewById(R.id.playSoundButton);
         // TODO look for sound or image resource when needed
-
+        ImageView questionPictureView = findViewById(R.id.questionPictureView);
         questionPictureView.setImageDrawable(getResources().getDrawable(R.drawable.home_gun));
+        questionPictureView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         RadioGroup radioGroup = findViewById(R.id.answerRadioGroup);
-
 
         for (Answer answer: flashcard.answers) {
             RadioButton radioButton = new RadioButton(this);
