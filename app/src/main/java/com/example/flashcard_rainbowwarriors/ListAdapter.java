@@ -51,6 +51,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
                 Flashcard flashcard = (Flashcard) v.getTag();
                 Intent intent = new Intent(context, FlashcardActivity.class);
                 intent.putExtra("flashcard", flashcard);
+                intent.putParcelableArrayListExtra("flashcards", flashcards);
                 context.startActivity(intent);
                 break;
         }
