@@ -18,13 +18,17 @@ import java.util.Collections;
 
 
 public class FlashcardActivity extends AppCompatActivity {
+    private static Class<?> classToPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flashcard);
         Intent intent = getIntent();
-        Flashcard flashcard = intent.getParcelableExtra("flashcard");
+        ArrayList<Flashcard> flashcards = intent.getParcelableArrayListExtra("flashcards");
+        int index = intent.getIntExtra("index", 0);
+        Flashcard flashcard = flashcards.get(index);
+        index++;
 
         TextView questionTextView = findViewById(R.id.questionTextView);
         questionTextView.setText(flashcard.questionText);
@@ -45,6 +49,7 @@ public class FlashcardActivity extends AppCompatActivity {
             radioGroup.addView(radioButton);
         }
 
+        int finalIndex = index;
         findViewById(R.id.validateAnswerButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,10 +73,21 @@ public class FlashcardActivity extends AppCompatActivity {
                     alertDialog.setMessage("La bonne réponse était: \n\n" + rightAnswer.value);
                 }
 
-                alertDialog.setNeutralButton("Test", new DialogInterface.OnClickListener() {
+                String buttonMessage;
+                if (finalIndex == flashcards.size()) {
+                    buttonMessage = "Suivant";
+                    FlashcardActivity.classToPass = MainActivity.class;
+                } else {
+                    buttonMessage = "Question suivante";
+                    FlashcardActivity.classToPass = FlashcardActivity.class;
+                }
+                alertDialog.setNeutralButton(buttonMessage, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(FlashcardActivity.this, "test", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(FlashcardActivity.this, classToPass);
+                        intent.putExtra("index", finalIndex);
+                        intent.putParcelableArrayListExtra("flashcards", flashcards);
+                        startActivity(intent);
                         dialog.dismiss();
                     }
                 });

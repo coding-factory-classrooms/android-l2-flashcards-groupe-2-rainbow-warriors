@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,11 +21,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        ArrayList<Answer> list = new ArrayList<Answer>();
-        list.add(new Answer(true, "Réponse 1"));
-        list.add(new Answer(false, "Réponse 2"));
-        Flashcard flashcard = new Flashcard("Question", "SourceType", "SourceName", list);
 
         findViewById(R.id.startButton).setOnClickListener(new View.OnClickListener() {
           @Override
@@ -39,7 +35,9 @@ public class MainActivity extends AppCompatActivity {
                       public void onClick(DialogInterface dialog, int which) {
                           Toast.makeText(MainActivity.this, items[which], Toast.LENGTH_SHORT).show();
                           Intent intent = new Intent(MainActivity.this, FlashcardActivity.class);
-                          intent.putExtra("flashcard", flashcard);
+                          ArrayList<Flashcard> flashcards = parsingFlashcardJSON.retrieveFromJSON(items[which], MainActivity.this);
+                          Collections.shuffle(flashcards);
+                          intent.putParcelableArrayListExtra("flashcards", flashcards);
                           startActivity(intent);
                           dialog.dismiss();
                       }
