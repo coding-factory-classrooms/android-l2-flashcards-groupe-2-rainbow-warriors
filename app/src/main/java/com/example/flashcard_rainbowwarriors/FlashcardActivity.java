@@ -3,6 +3,7 @@ package com.example.flashcard_rainbowwarriors;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,40 +25,54 @@ public class FlashcardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flashcard);
         Intent intent = getIntent();
-        ArrayList<Flashcard> flashcards = intent.getParcelableArrayListExtra("flashcards");
-        int index = intent.getIntExtra("index", 0);
-        Flashcard flashcard = flashcards.get(index);
-        index++;
 
-        TextView indexOnTotalTextView = findViewById(R.id.indexOnTotalTextView);
-        indexOnTotalTextView.setText(index + " / " + flashcards.size());
+        int index = intent.getIntExtra("index", -1);
+        Flashcard flashcard = null;
+        ArrayList<Flashcard> flashcards = null;
+
+        if (index >= 0) {
+            flashcards = intent.getParcelableArrayListExtra("flashcards");
+            flashcard = flashcards.get(index);
+            index++;
+            TextView indexOnTotalTextView = findViewById(R.id.indexOnTotalTextView);
+            indexOnTotalTextView.setText(index + " / " + flashcards.size());
+        } else {
+            flashcard = intent.getParcelableExtra("flashcard");
+        }
+
         TextView questionTextView = findViewById(R.id.questionTextView);
         questionTextView.setText(flashcard.questionText);
 
-        ImageView questionPictureView = findViewById(R.id.questionPictureView);
-        //Button playSoundButton = findViewById(R.id.playSoundButton);
         // TODO look for sound or image resource when needed
-
+        ImageView questionPictureView = findViewById(R.id.questionPictureView);
         questionPictureView.setImageDrawable(getResources().getDrawable(R.drawable.home_gun));
+        questionPictureView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        RadioGroup radioGroup = findViewById(R.id.answerRadioGroup);
+            }
+        });
 
         ArrayList<Answer> randomizedAnswers = flashcard.answers;
         Collections.shuffle(randomizedAnswers);
-        for (Answer answer: randomizedAnswers) {
+        RadioGroup radioGroup = findViewById(R.id.answerRadioGroup);
+
+        for (Answer answer: flashcard.answers) {
             RadioButton radioButton = new RadioButton(this);
             radioButton.setText(answer.value);
             radioGroup.addView(radioButton);
         }
 
         int finalIndex = index;
+        Flashcard finalFlashcard = flashcard;
+        ArrayList<Flashcard> finalFlashcards = flashcards;
         findViewById(R.id.validateAnswerButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RadioButton checkedButton = findViewById(radioGroup.getCheckedRadioButtonId());
                 Answer rightAnswer = null;
                 Answer selectedAnswer = null;
-                for (Answer answer: flashcard.answers) {
+                for (Answer answer: finalFlashcard.answers) {
                     if (answer.isAnswer) {
                         rightAnswer = answer;
                     }
@@ -76,7 +90,11 @@ public class FlashcardActivity extends AppCompatActivity {
                 }
 
                 String buttonMessage;
-                if (finalIndex == flashcards.size()) {
+                //todo add third if for statistic, and rework condition
+                if (finalFlashcards == null) {
+                    buttonMessage = "Retour à la liste";
+                    FlashcardActivity.classToPass = ListQuestionsActivity.class;
+                } else if (finalIndex == finalFlashcards.size()) {
                     buttonMessage = "Suivant";
                     FlashcardActivity.classToPass = MainActivity.class;
                 } else {
@@ -86,9 +104,14 @@ public class FlashcardActivity extends AppCompatActivity {
                 alertDialog.setNeutralButton(buttonMessage, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        if (classToPass == ListQuestionsActivity.class) {
+                            finish();
+                        }
                         Intent intent = new Intent(FlashcardActivity.this, classToPass);
                         intent.putExtra("index", finalIndex);
-                        intent.putParcelableArrayListExtra("flashcards", flashcards);
+                        if (finalFlashcards != null) {
+                            intent.putParcelableArrayListExtra("flashcards", finalFlashcards);
+                        }
                         startActivity(intent);
                         dialog.dismiss();
                     }

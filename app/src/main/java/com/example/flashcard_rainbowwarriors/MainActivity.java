@@ -22,10 +22,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.startButton).setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
+        /*
+         *Get values from the questions.json in /assets
+         * */
+        ArrayList<Flashcard> easyFlashcards;
+        ArrayList<Flashcard> mediumFlashcards;
+        ArrayList<Flashcard> hardFlashcards;
+        ArrayList<Flashcard> totalFlashcards = new ArrayList<Flashcard>();
 
+        easyFlashcards = parsingFlashcardJSON.retrieveFromJSON("Facile", this);
+        mediumFlashcards = parsingFlashcardJSON.retrieveFromJSON("Moyen", this);
+        hardFlashcards = parsingFlashcardJSON.retrieveFromJSON("Difficile", this);
+
+        easyFlashcards.addAll(mediumFlashcards);//Merge easy and medium difficulty arrays
+        easyFlashcards.addAll(hardFlashcards); //Merge difficulty array
+        totalFlashcards.addAll(easyFlashcards);
+
+        /*
+         *Sends the user to the "FlashcardActivity"
+         * */
+        findViewById(R.id.startButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                   AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
                   alertDialog.setTitle("Choisir la difficulté");
                   String[] items = {"Facile","Moyen","Difficile"};
@@ -38,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                           ArrayList<Flashcard> flashcards = parsingFlashcardJSON.retrieveFromJSON(items[which], MainActivity.this);
                           Collections.shuffle(flashcards);
                           intent.putParcelableArrayListExtra("flashcards", flashcards);
+                          intent.putExtra("index", 0);
                           startActivity(intent);
                           dialog.dismiss();
                       }
@@ -48,19 +67,21 @@ public class MainActivity extends AppCompatActivity {
               }
         });
 
+        /*
+         *Sends the user to the "ListQuestions" activity
+         * */
         Button listOfQuestions = findViewById(R.id.listButton);
         listOfQuestions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ListQuestionsActivity.class);
-                //TODO retrieve all flashcards and send it to the ListQuestionsActivity
-                //intent.putExtra("flashcard", flashcard);
+                intent.putExtra("flashcards", totalFlashcards);
                 startActivity(intent);
             }
         });
 
         /*
-         *Sends the user to the "AboutActivity" activity
+         *Sends the user to the "AboutActivity"
          * */
         Button aboutButton = findViewById(R.id.aboutButton);
         aboutButton.setOnClickListener(new View.OnClickListener() {

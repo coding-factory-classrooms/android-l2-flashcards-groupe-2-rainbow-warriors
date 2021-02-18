@@ -32,6 +32,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
     public void onBindViewHolder(@NonNull ListAdapter.ViewHolder holder, int position) {
         Flashcard flashcard = flashcards.get(position);
         holder.question.setText(flashcard.getQuestionText());
+        holder.difficulty.setText((flashcard.getDifficulty()));
 
         holder.itemView.setTag(flashcard);
         holder.itemView.setOnClickListener(this);
@@ -47,9 +48,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
         switch (v.getId()) {
             case R.id.rootItem:
                 Context context = v.getContext();
-                Flashcard flashcards = (Flashcard) v.getTag();
+                Flashcard flashcard = (Flashcard) v.getTag();
                 Intent intent = new Intent(context, FlashcardActivity.class);
-                intent.putExtra("flashcard", flashcards);
+                intent.putExtra("flashcard", flashcard);
                 context.startActivity(intent);
                 break;
         }
@@ -58,10 +59,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         final TextView question;
+        final TextView difficulty;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             question = itemView.findViewById(R.id.questionItemTextView);
+            difficulty = itemView.findViewById(R.id.difficultyTextView);
         }
     }
 }

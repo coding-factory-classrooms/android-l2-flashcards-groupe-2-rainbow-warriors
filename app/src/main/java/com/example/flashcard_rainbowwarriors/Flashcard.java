@@ -9,44 +9,38 @@ public class Flashcard implements Parcelable {
     String questionText;
     String sourceType;
     String sourceName;
+    String difficulty;
     ArrayList<Answer> answers;
 
     public String getQuestionText() {
         return questionText;
     }
 
-    public void setQuestionText(String questionText) {
-        this.questionText = questionText;
-    }
-
     public String getSourceType() {
         return sourceType;
-    }
-
-    public void setSourceType(String sourceType) {
-        this.sourceType = sourceType;
     }
 
     public String getSourceName() {
         return sourceName;
     }
 
-    public void setSourceName(String sourceName) {
-        this.sourceName = sourceName;
+    public String getDifficulty() {
+        return difficulty;
     }
 
     public ArrayList<Answer> getAnswers() {
         return answers;
     }
 
-    public void setAnswers(ArrayList<Answer> answers) {
-        this.answers = answers;
+    public static Creator<Flashcard> getCREATOR() {
+        return CREATOR;
     }
 
-    public Flashcard(String questionText, String sourceType, String sourceName, ArrayList<Answer> answers) {
+    public Flashcard(String questionText, String sourceType, String sourceName, String difficulty, ArrayList<Answer> answers) {
         this.questionText = questionText;
         this.sourceType = sourceType;
         this.sourceName = sourceName;
+        this.difficulty = difficulty;
         this.answers = answers;
     }
 
@@ -54,6 +48,7 @@ public class Flashcard implements Parcelable {
         questionText = in.readString();
         sourceType = in.readString();
         sourceName = in.readString();
+        difficulty = in.readString();
         answers = in.createTypedArrayList(Answer.CREATOR);
     }
 
@@ -62,6 +57,7 @@ public class Flashcard implements Parcelable {
         dest.writeString(questionText);
         dest.writeString(sourceType);
         dest.writeString(sourceName);
+        dest.writeString(difficulty);
         dest.writeTypedList(answers);
     }
 
