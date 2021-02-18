@@ -11,7 +11,6 @@ public class Flashcard implements Parcelable {
     String sourceType;
     String sourceName;
     ArrayList<Answer> answers;
-    int indexRightAnswer; //useless, might delete
 
     public String getQuestionText() {
         return questionText;
@@ -45,20 +44,11 @@ public class Flashcard implements Parcelable {
         this.answers = answers;
     }
 
-    public int getIndexRightAnswer() {
-        return indexRightAnswer;
-    }
-
-    public void setIndexRightAnswer(int indexRightAnswer) {
-        this.indexRightAnswer = indexRightAnswer;
-    }
-
-    public Flashcard(String questionText, String sourceType, String sourceName, ArrayList<Answer> answers, int indexRightAnswer) {
+    public Flashcard(String questionText, String sourceType, String sourceName, ArrayList<Answer> answers) {
         this.questionText = questionText;
         this.sourceType = sourceType;
         this.sourceName = sourceName;
         this.answers = answers;
-        this.indexRightAnswer = indexRightAnswer;
     }
 
     protected Flashcard(Parcel in) {
@@ -66,7 +56,6 @@ public class Flashcard implements Parcelable {
         sourceType = in.readString();
         sourceName = in.readString();
         answers = in.createTypedArrayList(Answer.CREATOR);
-        indexRightAnswer = in.readInt();
     }
 
     @Override
@@ -75,7 +64,6 @@ public class Flashcard implements Parcelable {
         dest.writeString(sourceType);
         dest.writeString(sourceName);
         dest.writeTypedList(answers);
-        dest.writeInt(indexRightAnswer);
     }
 
     @Override

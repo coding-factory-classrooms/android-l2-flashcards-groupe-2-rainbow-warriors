@@ -20,6 +20,9 @@ public class ListQuestionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_questions);
 
         //TODO recevoir toutes les flashcards
+
+
+
 //        Intent intent = getIntent();
 //        Flashcard flashcard = intent.getParcelableExtra("flashcard");
 
@@ -28,7 +31,7 @@ public class ListQuestionsActivity extends AppCompatActivity {
         answers.add(new Answer(true, "Réponse 1"));
         answers.add(new Answer(false, "Réponse 2"));
         for (int i = 0; i < 30; i++) {
-            flashcards.add(new Flashcard("Question " + i, "SourceType", "SourceName", answers, 0));
+            flashcards.add(new Flashcard("Question " + i, "SourceType", "SourceName", answers));
         }
 
         adapter = new ListAdapter(flashcards);
