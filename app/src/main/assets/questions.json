@@ -3,7 +3,7 @@
     {
       "questionText": "Quelle est cette arme ?",
       "sourceType": "picture",
-      "sourceName": "ak_47",
+      "sourceName": "QUIZZ_FC_FUSIL_AUTOMATIQUE",
       "answers": [
         {
           "isAnswer": true,
@@ -19,19 +19,79 @@
         }
       ]
     },
-
     {
       "questionText": "Quelle est cette arme ?",
       "sourceType": "picture",
-      "sourceName": "ak_47",
+      "sourceName": "QUIZZ_FC_FUSIL_A_VEROU",
       "answers": [
         {
-          "isAnswer": true,
+          "isAnswer": false,
           "value": "Fusil sniper"
+        },
+        {
+          "isAnswer": true,
+          "value": "Fusil à vérou"
         },
         {
           "isAnswer": false,
           "value": "Fusil à pompe"
+        }
+      ]
+    },
+    {
+      "questionText": "Quelle est cette arme ?",
+      "sourceType": "picture",
+      "sourceName": "QUIZZ_FC_AK47",
+      "answers": [
+        {
+          "isAnswer": true,
+          "value": "Fusil automatique"
+        },
+        {
+          "isAnswer": false,
+          "value": "Fusil à vérou"
+        },
+        {
+          "isAnswer": false,
+          "value": "Fusil à pompe"
+        }
+      ]
+    },
+    {
+      "questionText": "Quelle est cette arme ?",
+      "sourceType": "picture",
+      "sourceName": "QUIZZ_FC_FUSIL_A_POMPE",
+      "answers": [
+        {
+          "isAnswer": false,
+          "value": "Fusil automatique"
+        },
+        {
+          "isAnswer": false,
+          "value": "Fusil à vérou"
+        },
+        {
+          "isAnswer": true,
+          "value": "Fusil à pompe"
+        }
+      ]
+    }
+    {
+      "questionText": "Quelle est cette arme ?",
+      "sourceType": "picture",
+      "sourceName": "QUIZZ_FC_PISTOLET",
+      "answers": [
+        {
+          "isAnswer": false,
+          "value": "Fusil automatique"
+        },
+        {
+          "isAnswer": true,
+          "value": "Pistolet"
+        },
+        {
+          "isAnswer": false,
+          "value": "Sabre"
         }
       ]
     }
@@ -39,78 +99,216 @@
 
   "Moyen": [
     {
-      "questionText": "Quelle est cette arme ?",
+      "questionText": "Quelle est le nom de cette arme ?",
       "sourceType": "picture",
-      "sourceName": "ak_47",
+      "sourceName": "QUIZZ_FC_M4A1",
       "answers": [
         {
+          "isAnswer": false,
+          "value": "MP5 SILENCIEUX"
+        },
+        {
+          "isAnswer": false,
+          "value": "AK_47"
+        },
+        {
           "isAnswer": true,
-          "value": "Fusil automatique"
-        },
-        {
-          "isAnswer": false,
-          "value": "Fusil à verrou"
-        },
-        {
-          "isAnswer": false,
-          "value": "Fusil de chasse"
+          "value": "M4A1"
         }
       ]
     },
-
     {
-      "questionText": "Quelle est cette arme ?",
+      "questionText": "Quelle est le nom de cette arme ?",
       "sourceType": "picture",
-      "sourceName": "ak_47",
+      "sourceName": "QUIZZ_FC_SPASS_12",
       "answers": [
         {
-          "isAnswer": true,
-          "value": "Fusil sniper"
+          "isAnswer": false,
+          "value": "Waterfowl"
         },
         {
           "isAnswer": false,
-          "value": "Fusil à pompe"
+          "value": "Winchester"
+        },
+        {
+          "isAnswer": true,
+          "value": "SPAS 12"
         }
       ]
-    }
+    },  
+    {
+      "questionText": "Quelle est le nom de cette arme ?",
+      "sourceType": "picture",
+      "sourceName": "QUIZZ_FC_M4_SUPRESSED",
+      "answers": [
+        {
+          "isAnswer": true,
+          "value": "M4 SILENCIEUX"
+        },
+        {
+          "isAnswer": false,
+          "value": "M4A1 SILENCIEUX"
+        },
+        {
+          "isAnswer": false,
+          "value": "M12345 SILENCIEUX"
+        }
+      ]
+    },
+    {
+      "questionText": "Quelle est le nom de cette arme ?",
+      "sourceType": "picture",
+      "sourceName": "QUIZZ_FC_HK_MP5",
+      "answers": [
+        {
+          "isAnswer": false,
+          "value": "FAMAS"
+        },
+        {
+          "isAnswer": true,
+          "value": "MP540"
+        },
+        {
+          "isAnswer": false,
+          "value": "UZI"
+        }
+      ]
+    },
+    {
+      "questionText": "Quelle est le nom de cette arme ?",
+      "sourceType": "picture",
+      "sourceName": "QUIZZ_FC_UZI",
+      "answers": [
+        {
+          "isAnswer": false,
+          "value": "MP5"
+        },
+        {
+          "isAnswer": false,
+          "value": "IZI"
+        },
+        {
+          "isAnswer": true,
+          "value": "UZI"
+        }
+      ]
+    },    
   ],
 
   "Difficile": [
     {
       "questionText": "Quelle est cette arme ?",
-      "sourceType": "picture",
-      "sourceName": "ak_47",
+      "sourceType": "audio",
+      "sourceName": "AK_47_HIT_S",
       "answers": [
         {
           "isAnswer": true,
-          "value": "Fusil automatique"
+          "value": "AK-47"
         },
         {
           "isAnswer": false,
-          "value": "Fusil à verrou"
+          "value": "AK_47 SILENCIEUX"
         },
         {
           "isAnswer": false,
-          "value": "Fusil de chasse"
+          "value": "M4A1"
         }
       ]
     },
-
     {
       "questionText": "Quelle est cette arme ?",
-      "sourceType": "picture",
-      "sourceName": "ak_47",
+      "sourceType": "audio",
+      "sourceName": "M4A1",
       "answers": [
         {
-          "isAnswer": true,
-          "value": "Fusil sniper"
+          "isAnswer": false,
+          "value": "MP5 SILENCIEUX"
         },
         {
           "isAnswer": false,
-          "value": "Fusil à pompe"
+          "value": "AK_47"
+        },
+        {
+          "isAnswer": true,
+          "value": "M4A1"
         }
       ]
-    }
+    },
+    {
+      "questionText": "Quelle est cette arme ?",
+      "sourceType": "audio",
+      "sourceName": "M4A1_Suppressed",
+      "answers": [
+        {
+          "isAnswer": false,
+          "value": "SPAS 12 SILENCIEUX"
+        },
+        {
+          "isAnswer": true,
+          "value": "M4A1 SILENCIEUX"
+        },
+        {
+          "isAnswer": false,
+          "value": "REVOLVER"
+        }
+      ]
+    },
+    {
+      "questionText": "Quelle est cette arme ?",
+      "sourceType": "audio",
+      "sourceName": "HK_MP540_BURST",
+      "answers": [
+        {
+          "isAnswer": false,
+          "value": "FAMAS"
+        },
+        {
+          "isAnswer": true,
+          "value": "MP540"
+        },
+        {
+          "isAnswer": false,
+          "value": "GLOCK"
+        }
+      ]
+    },    
+    {
+      "questionText": "Quelle est cette arme ?",
+      "sourceType": "audio",
+      "sourceName": "SPAS_12_BURST",
+      "answers": [
+        {
+          "isAnswer": false,
+          "value": "Waterfowl 12/89"
+        },
+        {
+          "isAnswer": false,
+          "value": "Winchester"
+        },
+        {
+          "isAnswer": true,
+          "value": "SPAS 12"
+        }
+      ]
+    },  
+    {
+      "questionText": "Quelle est cette arme ?",
+      "sourceType": "audio",
+      "sourceName": "SHOTGUN_BURST",
+      "answers": [
+        {
+          "isAnswer": false,
+          "value": "Waterfowl 12/89"
+        },
+        {
+          "isAnswer": true,
+          "value": "Winchester"
+        },
+        {
+          "isAnswer": false,
+          "value": "SPAS 12"
+        }
+      ]
+    } 
   ]
-
 }
