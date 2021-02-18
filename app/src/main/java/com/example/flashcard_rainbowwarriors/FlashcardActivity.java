@@ -30,6 +30,8 @@ public class FlashcardActivity extends AppCompatActivity {
         Flashcard flashcard = flashcards.get(index);
         index++;
 
+        TextView indexOnTotalTextView = findViewById(R.id.indexOnTotalTextView);
+        indexOnTotalTextView.setText(index + " / " + flashcards.size());
         TextView questionTextView = findViewById(R.id.questionTextView);
         questionTextView.setText(flashcard.questionText);
 
