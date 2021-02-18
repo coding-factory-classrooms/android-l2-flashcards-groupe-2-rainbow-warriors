@@ -2,22 +2,37 @@
   "Facile": [
     {
       "questionText": "Quelle est cette arme ?",
-      "isPicture": true,
+      "sourceType": "picture",
       "sourceName": "ak_47",
       "answers": [
-        "Fusil automatique",
-        "Fusil à verrou",
-        "Fusil de chasse"
+        {
+          "isAnswer": true,
+          "value": "Fusil automatique"
+        },
+        {
+          "isAnswer": false,
+          "value": "Fusil à verrou"
+        },
+        {
+          "isAnswer": false,
+          "value": "Fusil de chasse"
+        }
       ]
     },
 
     {
       "questionText": "Quelle est cette arme ?",
-      "isPicture": true,
+      "sourceType": "picture",
       "sourceName": "ak_47",
       "answers": [
-        "Fusil à pompe",
-        "Fusil sniper"
+        {
+          "isAnswer": true,
+          "value": "Fusil sniper"
+        },
+        {
+          "isAnswer": false,
+          "value": "Fusil à pompe"
+        }
       ]
     }
   ],
@@ -25,22 +40,37 @@
   "Moyen": [
     {
       "questionText": "Quelle est cette arme ?",
-      "isPicture": true,
+      "sourceType": "picture",
       "sourceName": "ak_47",
       "answers": [
-        "Fusil automatique",
-        "Fusil à verrou",
-        "Fusil de chasse"
+        {
+          "isAnswer": true,
+          "value": "Fusil automatique"
+        },
+        {
+          "isAnswer": false,
+          "value": "Fusil à verrou"
+        },
+        {
+          "isAnswer": false,
+          "value": "Fusil de chasse"
+        }
       ]
     },
 
     {
       "questionText": "Quelle est cette arme ?",
-      "isPicture": true,
+      "sourceType": "picture",
       "sourceName": "ak_47",
       "answers": [
-        "Fusil à pompe",
-        "Fusil sniper"
+        {
+          "isAnswer": true,
+          "value": "Fusil sniper"
+        },
+        {
+          "isAnswer": false,
+          "value": "Fusil à pompe"
+        }
       ]
     }
   ],
@@ -48,22 +78,37 @@
   "Difficile": [
     {
       "questionText": "Quelle est cette arme ?",
-      "isPicture": true,
+      "sourceType": "picture",
       "sourceName": "ak_47",
       "answers": [
-        "Fusil automatique",
-        "Fusil à verrou",
-        "Fusil de chasse"
+        {
+          "isAnswer": true,
+          "value": "Fusil automatique"
+        },
+        {
+          "isAnswer": false,
+          "value": "Fusil à verrou"
+        },
+        {
+          "isAnswer": false,
+          "value": "Fusil de chasse"
+        }
       ]
     },
 
     {
       "questionText": "Quelle est cette arme ?",
-      "isPicture": true,
+      "sourceType": "picture",
       "sourceName": "ak_47",
       "answers": [
-        "Fusil à pompe",
-        "Fusil sniper"
+        {
+          "isAnswer": true,
+          "value": "Fusil sniper"
+        },
+        {
+          "isAnswer": false,
+          "value": "Fusil à pompe"
+        }
       ]
     }
   ]

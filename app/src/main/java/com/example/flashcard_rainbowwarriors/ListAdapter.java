@@ -31,7 +31,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
     @Override
     public void onBindViewHolder(@NonNull ListAdapter.ViewHolder holder, int position) {
         Flashcard flashcard = flashcards.get(position);
-        holder.question.setText(flashcard.getQuestion());
+        holder.question.setText(flashcard.getQuestionText());
 
         holder.itemView.setTag(flashcard);
         holder.itemView.setOnClickListener(this);

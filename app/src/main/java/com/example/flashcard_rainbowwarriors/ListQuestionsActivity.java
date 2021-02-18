@@ -23,11 +23,12 @@ public class ListQuestionsActivity extends AppCompatActivity {
 //        Intent intent = getIntent();
 //        Flashcard flashcard = intent.getParcelableExtra("flashcard");
 
-        ArrayList flashcards = new ArrayList<>();
-        for (int i = 0; i<30; i++) {
-            flashcards.add(new Flashcard("Question 1", 0, 0, new ArrayList<String>(), 0));
-            flashcards.add(new Flashcard("Question 2", 0, 0, new ArrayList<String>(), 0));
-            flashcards.add(new Flashcard("Question 3", 0, 0, new ArrayList<String>(), 0));
+        ArrayList<Flashcard> flashcards = new ArrayList<>();
+        ArrayList<Answer> answers = new ArrayList<>();
+        answers.add(new Answer(true, "Réponse 1"));
+        answers.add(new Answer(false, "Réponse 2"));
+        for (int i = 0; i < 30; i++) {
+            flashcards.add(new Flashcard("Question " + i, "SourceType", "SourceName", answers, 0));
         }
 
         adapter = new ListAdapter(flashcards);

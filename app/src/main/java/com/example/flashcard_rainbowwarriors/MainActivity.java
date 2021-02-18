@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,32 +23,43 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayList<String> list = new ArrayList<String>();
-        list.add("Réponse 1");
-        list.add("Réponse 2");
-        Flashcard flashcard = new Flashcard("Question", 0, 0, list, 0);
+        ArrayList<Answer> list = new ArrayList<Answer>();
+        list.add(new Answer(true, "Réponse 1"));
+        list.add(new Answer(false, "Réponse 2"));
+        Flashcard flashcard = new Flashcard("Question", "SourceType", "SourceName", list, 0);
 
         findViewById(R.id.startButton).setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-              AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-              builder.setCancelable(true);
-              builder.setTitle("Difficulté");
-              builder.setMessage("Choisir niveau de difficulté");
-              builder.setButton("Continue..", new DialogInterface.OnClickListener() {
-                  public void onClick(DialogInterface dialog, int which) {
-                      // here you can add functions
-                  }
-              });
-              AlertDialog dialog = builder.create();
-              dialog.show();
 
-
-
-              Intent intent = new Intent(MainActivity.this, FlashcardActivity.class);
-              intent.putExtra("flashcard", flashcard);
-              startActivity(intent);
-          }
+                  AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+                  alertDialog.setTitle("Choisir la difficulté");
+                  String[] items = {"Facile","Moyen","Difficile"};
+                  int checkedItem = 1;
+                  alertDialog.setSingleChoiceItems(items, checkedItem, new DialogInterface.OnClickListener() {
+                      @Override
+                      public void onClick(DialogInterface dialog, int which) {
+                          switch (which) {
+                              case 0:
+                                  Toast.makeText(MainActivity.this, "Facile", Toast.LENGTH_SHORT).show();
+                                  Intent intent = new Intent(MainActivity.this, FlashcardActivity.class);
+                                  intent.putExtra("flashcard", flashcard);
+                                  startActivity(intent);
+                                  dialog.dismiss();
+                                  break;
+                              case 1:
+                                  Toast.makeText(MainActivity.this, "Moyen", Toast.LENGTH_SHORT).show();
+                                  break;
+                              case 2:
+                                  Toast.makeText(MainActivity.this, "Difficile", Toast.LENGTH_SHORT).show();
+                                  break;
+                          }
+                      }
+                  });
+                  AlertDialog alert = alertDialog.create();
+                  alert.show();
+                  alert.setCanceledOnTouchOutside(true);
+              }
         });
 
         Button listOfQuestions = findViewById(R.id.listButton);

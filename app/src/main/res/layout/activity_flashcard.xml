@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+        app:layout_constraintBottom_toTopOf="@+id/answerRadioGroup"
         app:layout_constraintEnd_toEndOf="@+id/playSoundButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/playSoundButton"
@@ -52,23 +52,16 @@
         app:layout_constraintEnd_toEndOf="@+id/playSoundButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/playSoundButton"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/answerRadioGroup" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/answerRadioGroup"
         android:layout_width="367dp"
         android:layout_height="250dp"
         app:layout_constraintBottom_toTopOf="@+id/validateAnswerButton"
         app:layout_constraintEnd_toEndOf="@+id/playSoundButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/playSoundButton"
-        app:layout_constraintTop_toBottomOf="@+id/questionTextView">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/answerRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/answer" />
-    </RadioGroup>
+        app:layout_constraintTop_toBottomOf="@+id/questionTextView"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
