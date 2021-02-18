@@ -7,6 +7,7 @@ import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -62,7 +63,7 @@ public class FlashcardActivity extends AppCompatActivity {
             radioButton.setText(answer.value);
             radioGroup.addView(radioButton);
         }
-
+        final int[] goodAnswers = {intent.getIntExtra("goodAnswers", 0)};
         int finalIndex = index;
         Flashcard finalFlashcard = flashcard;
         ArrayList<Flashcard> finalFlashcards = flashcards;
@@ -84,6 +85,7 @@ public class FlashcardActivity extends AppCompatActivity {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(FlashcardActivity.this);
                 if (selectedAnswer == rightAnswer) {
                     alertDialog.setTitle("Bonne réponse !");
+                    goodAnswers[0]++;
                 } else {
                     alertDialog.setTitle("Mauvaise réponse.");
                     alertDialog.setMessage("La bonne réponse était: \n\n" + rightAnswer.value);
@@ -95,6 +97,11 @@ public class FlashcardActivity extends AppCompatActivity {
                     buttonMessage = "Retour à la liste";
                     FlashcardActivity.classToPass = ListQuestionsActivity.class;
                 } else if (finalIndex == finalFlashcards.size()) {
+                    Intent intent = new Intent(FlashcardActivity.this, StatisticsActivity.class);
+                    intent.putExtra("difficulty", finalFlashcard.difficulty);
+                    intent.putExtra("goodAnswers", goodAnswers[0]);
+                    intent.putExtra("nbrQuestions", 2);
+                    startActivity(intent);
                     buttonMessage = "Suivant";
                     FlashcardActivity.classToPass = MainActivity.class;
                 } else {
@@ -109,6 +116,7 @@ public class FlashcardActivity extends AppCompatActivity {
                         }
                         Intent intent = new Intent(FlashcardActivity.this, classToPass);
                         intent.putExtra("index", finalIndex);
+                        intent.putExtra("goodAnswers", goodAnswers[0]);
                         if (finalFlashcards != null) {
                             intent.putParcelableArrayListExtra("flashcards", finalFlashcards);
                         }
