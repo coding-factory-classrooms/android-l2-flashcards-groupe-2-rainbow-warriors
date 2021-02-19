@@ -22,6 +22,9 @@ public class StatisticsActivity extends AppCompatActivity {
         establishStatistics(difficulty, goodAnswers, nbrQuestions);
     }
 
+    /*
+     *Retrieve infos about the user's results and display the statistics
+     * */
     public void establishStatistics(String difficulty, int goodAnswers, int nbrQuestions){
         TextView difficultyLevel = findViewById(R.id.difficultyTextView);
         TextView successPercentage = findViewById(R.id.successPercentageTextView);

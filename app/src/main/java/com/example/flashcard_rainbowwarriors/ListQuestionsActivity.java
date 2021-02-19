@@ -14,6 +14,9 @@ public class ListQuestionsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /*
+         *Displays the list of all questions
+         * */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_questions);
 

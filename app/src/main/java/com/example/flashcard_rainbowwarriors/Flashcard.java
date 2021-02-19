@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class Flashcard implements Parcelable {
     String questionText;
-    String sourceType;
-    String sourceName;
+    String sourceType; // audio or picture
+    String sourceName; // filename
     String difficulty;
     ArrayList<Answer> answers;
 

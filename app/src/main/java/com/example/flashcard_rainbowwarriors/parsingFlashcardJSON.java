@@ -18,6 +18,9 @@ public class parsingFlashcardJSON {
 
         org.json.simple.parser.JSONParser jsonParser = new org.json.simple.parser.JSONParser();
 
+        /*
+         *Parse the JSON file to get the list of Flashcards and their infos
+         * */
         try (BufferedReader bfr = new BufferedReader(new InputStreamReader(context.getAssets().open("questions.json"))))
         {
             Object obj = jsonParser.parse(bfr);
@@ -36,7 +39,9 @@ public class parsingFlashcardJSON {
                             (String) answerObj.get("value")
                     ));
                 }
-
+                /*
+                 *Create a new flashcard with the informations obtained in the JSON
+                 * */
                 flashcard = new Flashcard(
                         (String) flashObj.get("questionText"),
                         (String) flashObj.get("sourceType"),
@@ -44,7 +49,7 @@ public class parsingFlashcardJSON {
                         difficulty,
                         answers
                 );
-                flashcards.add(flashcard);
+                flashcards.add(flashcard); //Adding each flashcard to an ArrayList
             }
 
         } catch (IOException | ParseException e) {

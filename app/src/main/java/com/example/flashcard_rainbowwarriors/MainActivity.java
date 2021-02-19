@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                           Toast.makeText(MainActivity.this, items[which], Toast.LENGTH_SHORT).show();
                           Intent intent = new Intent(MainActivity.this, FlashcardActivity.class);
                           ArrayList<Flashcard> flashcards = parsingFlashcardJSON.retrieveFromJSON(items[which], MainActivity.this);
-                          Collections.shuffle(flashcards);
+                          Collections.shuffle(flashcards); //Shuffling the flashcards so that the questions are never in the same order
                           flashcards = splitList(flashcards);
                           intent.putParcelableArrayListExtra("flashcards", flashcards);
                           intent.putExtra("index", 0);
@@ -132,7 +132,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+    /*
+     *Split the ArrayList of flashcards so that there are only five left
+     * */
     public ArrayList<Flashcard> splitList(ArrayList<Flashcard> flashcards) {
         ArrayList<Flashcard> result = new ArrayList<>();
         for (int i = 0; i <= 4; i++) {

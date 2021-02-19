@@ -51,9 +51,9 @@ public class FlashcardActivity extends AppCompatActivity {
         ImageView questionPictureView = findViewById(R.id.questionPictureView);
         Button playSoundButton = findViewById(R.id.playSoundButton);
 
-
-        // TODO look for sound or image resource when needed
-
+        /*
+         *We check if the source is of audio or picture type and display it
+         * */
         if (flashcard.sourceType.equals("picture")){
             playSoundButton.setVisibility(View.GONE);
             int picId = getResources().getIdentifier(flashcard.sourceName, "drawable", getPackageName());
@@ -66,7 +66,7 @@ public class FlashcardActivity extends AppCompatActivity {
             playSoundButton.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View v) {
                     mp.start();
-                }
+                } //Playing the sound
             });
         }
 
@@ -78,35 +78,37 @@ public class FlashcardActivity extends AppCompatActivity {
         });
 
         ArrayList<Answer> randomizedAnswers = flashcard.answers;
-        Collections.shuffle(randomizedAnswers);
+        Collections.shuffle(randomizedAnswers); //Shuffling so that the answers are randomly placed
         RadioGroup radioGroup = findViewById(R.id.answerRadioGroup);
 
+        /*
+         *Creating a radioButton for each answer
+         * */
         for (Answer answer: flashcard.answers) {
             RadioButton radioButton = new RadioButton(this);
             radioButton.setText(answer.value);
             radioGroup.addView(radioButton);
         }
-        final int[] goodAnswers = {intent.getIntExtra("goodAnswers", 0)};
+        final int[] goodAnswers = {intent.getIntExtra("goodAnswers", 0)};//number of good answers
         int finalIndex = index;
         Flashcard finalFlashcard = flashcard;
         ArrayList<Flashcard> finalFlashcards = flashcards;
         findViewById(R.id.validateAnswerButton).setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 RadioButton checkedButton = findViewById(radioGroup.getCheckedRadioButtonId());
-                if (checkedButton == null){
-                    //Toast.makeText(FlashcardActivity.this,"Vous devez sélectionner une réponse pour valider", Toast.LENGTH_SHORT).show();
-                    //finish();
-                    //startActivity(getIntent());
-                    Toast toast = Toast.makeText(FlashcardActivity.this,"Vous devez sélectionner une réponse pour valider", Toast.LENGTH_LONG);
-                    toast.show();
-                    return;
-                }
+                /*
+                 *Checks if the user checked a radioButton
+                 * */
                 if (checkedButton == null) {
                     Toast toast = Toast.makeText(FlashcardActivity.this, "Vous devez sélectionner une réponse pour continuer", Toast.LENGTH_LONG);
                     toast.show();
                     return;
                 }
+                /*
+                 *Checks the good answer and the selected answer
+                 * */
                 Answer rightAnswer = null;
                 Answer selectedAnswer = null;
                 for (Answer answer: finalFlashcard.answers) {
@@ -117,7 +119,9 @@ public class FlashcardActivity extends AppCompatActivity {
                         selectedAnswer = answer;
                     }
                 }
-
+                /*
+                 *Checks if the answer is good and and allow user to pass to either the next question, the statistics or going back to the list of questions depending the cases
+                 * */
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(FlashcardActivity.this);
                 if (selectedAnswer == rightAnswer) {
                     alertDialog.setTitle("Bonne réponse !");
@@ -142,11 +146,17 @@ public class FlashcardActivity extends AppCompatActivity {
                 alertDialog.setNeutralButton(buttonMessage, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        /*
+                         *To go back to the list of questions
+                         * */
                         if (classToPass == ListQuestionsActivity.class) {
                             Intent intent = new Intent(FlashcardActivity.this, ListQuestionsActivity.class);
                             intent.putParcelableArrayListExtra("flashcards", finalFlashcards);
                             startActivity(intent);
                             finish();
+                            /*
+                             *To go to the statistics
+                             * */
                         } else if (classToPass == StatisticsActivity.class) {
                             Intent intent = new Intent(FlashcardActivity.this, StatisticsActivity.class);
                             intent.putExtra("difficulty", finalFlashcard.difficulty);
@@ -154,6 +164,9 @@ public class FlashcardActivity extends AppCompatActivity {
                             intent.putExtra("nbrQuestions", finalFlashcards.size());
                             startActivity(intent);
                             finish();
+                            /*
+                             *To go to the next question
+                             * */
                         } else {
                             Intent intent = new Intent(FlashcardActivity.this, classToPass);
                             intent.putExtra("index", finalIndex);
