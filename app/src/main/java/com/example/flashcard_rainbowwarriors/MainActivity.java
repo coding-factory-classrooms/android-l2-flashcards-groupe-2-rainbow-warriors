@@ -30,27 +30,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         /*
          *Sends the user to the "FlashcardActivity"
          * */
-
         findViewById(R.id.startButton).setOnClickListener(this);
+
         /*
          *Sends the user to the "ListQuestions" activity
          * */
-        Button listOfQuestions = findViewById(R.id.listButton);
-        listOfQuestions.setOnClickListener(this);
+        findViewById(R.id.listButton).setOnClickListener(this);
 
         /*
          *Sends the user to the "AboutActivity"
          * */
-        Button aboutButton = findViewById(R.id.aboutButton);
-        aboutButton.setOnClickListener(this);
+        findViewById(R.id.aboutButton).setOnClickListener(this);
 
         /*
          *Modifies UI to either white or black mode for users.
          * */
-        Button darkMode = findViewById(R.id.darkmodeButton);
-        darkMode.setOnClickListener(this);
-        isNightMode = false;
+        findViewById(R.id.darkmodeButton).setOnClickListener(this);
 
+        isNightMode = false;
     }
 
     @Override
