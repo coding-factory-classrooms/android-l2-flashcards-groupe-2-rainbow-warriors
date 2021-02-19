@@ -145,28 +145,21 @@ public class FlashcardActivity extends AppCompatActivity {
                 alertDialog.setNeutralButton(buttonMessage, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(FlashcardActivity.this, classToPass);
                         if (classToPass == ListQuestionsActivity.class) {
-                            Intent intent = new Intent(FlashcardActivity.this, ListQuestionsActivity.class);
                             intent.putParcelableArrayListExtra("flashcards", finalFlashcards);
-                            startActivity(intent);
-                            finish();
                         } else if (classToPass == StatisticsActivity.class) {
-                            Intent intent = new Intent(FlashcardActivity.this, StatisticsActivity.class);
                             intent.putExtra("difficulty", finalFlashcard.difficulty);
                             intent.putExtra("goodAnswers", goodAnswers[0]);
                             intent.putExtra("nbrQuestions", finalFlashcards.size());
-                            startActivity(intent);
-                            finish();
                         } else {
-                            Intent intent = new Intent(FlashcardActivity.this, classToPass);
                             intent.putExtra("index", finalIndex);
                             intent.putExtra("goodAnswers", goodAnswers[0]);
-                            if (finalFlashcards != null) {
-                                intent.putParcelableArrayListExtra("flashcards", finalFlashcards);
-                            }
-                            startActivity(intent);
+                            intent.putParcelableArrayListExtra("flashcards", finalFlashcards);
                             dialog.dismiss();
                         }
+                        startActivity(intent);
+                        finish();
                     }
                 });
 
