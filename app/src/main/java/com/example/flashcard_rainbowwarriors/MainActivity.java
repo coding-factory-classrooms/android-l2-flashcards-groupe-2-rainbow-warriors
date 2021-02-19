@@ -2,6 +2,7 @@ package com.example.flashcard_rainbowwarriors;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.lang.reflect.Array;
@@ -17,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
+
+    private boolean isNightMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +111,25 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("groupName", "Rainbow Warriors");
                 intent.putExtra("versionName", myVersionName);
                 startActivity(intent);
+            }
+        });
+        /*
+         *Modifies UI to either white or black mode for users.
+         * */
+        Button darkMode = findViewById(R.id.darkmodeButton);
+        isNightMode = false;
+
+        darkMode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isNightMode) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    isNightMode = false;
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
+                    isNightMode = true;
+                }
             }
         });
     }
