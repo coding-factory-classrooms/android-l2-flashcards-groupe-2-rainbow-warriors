@@ -146,15 +146,16 @@ public class FlashcardActivity extends AppCompatActivity {
                             intent.putExtra("nbrQuestions", finalFlashcards.size());
                             startActivity(intent);
                             finish();
+                        } else {
+                            Intent intent = new Intent(FlashcardActivity.this, classToPass);
+                            intent.putExtra("index", finalIndex);
+                            intent.putExtra("goodAnswers", goodAnswers[0]);
+                            if (finalFlashcards != null) {
+                                intent.putParcelableArrayListExtra("flashcards", finalFlashcards);
+                            }
+                            startActivity(intent);
+                            dialog.dismiss();
                         }
-                        Intent intent = new Intent(FlashcardActivity.this, classToPass);
-                        intent.putExtra("index", finalIndex);
-                        intent.putExtra("goodAnswers", goodAnswers[0]);
-                        if (finalFlashcards != null) {
-                            intent.putParcelableArrayListExtra("flashcards", finalFlashcards);
-                        }
-                        startActivity(intent);
-                        dialog.dismiss();
                     }
                 });
 
