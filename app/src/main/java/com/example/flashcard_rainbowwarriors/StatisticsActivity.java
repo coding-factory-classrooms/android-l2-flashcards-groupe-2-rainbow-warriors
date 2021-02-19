@@ -18,10 +18,7 @@ public class StatisticsActivity extends AppCompatActivity {
         int nbrQuestions = intent.getIntExtra("nbrQuestions", 0);
         String difficulty = intent.getStringExtra("difficulty");
 
-        //establishStatistics("Moyen", 4, 5);
         establishStatistics(difficulty, goodAnswers, nbrQuestions);
-
-
     }
 
     public void establishStatistics(String difficulty, int goodAnswers, int nbrQuestions){

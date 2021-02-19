@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                           Intent intent = new Intent(MainActivity.this, FlashcardActivity.class);
                           ArrayList<Flashcard> flashcards = parsingFlashcardJSON.retrieveFromJSON(items[which], MainActivity.this);
                           Collections.shuffle(flashcards);
+                          flashcards = splitList(flashcards);
                           intent.putParcelableArrayListExtra("flashcards", flashcards);
                           intent.putExtra("index", 0);
                           startActivity(intent);
@@ -107,5 +109,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public ArrayList<Flashcard> splitList(ArrayList<Flashcard> flashcards) {
+        ArrayList<Flashcard> result = new ArrayList<>();
+        for (int i = 0; i <= 4; i++) {
+            result.add(flashcards.get(i));
+        }
+        return result;
     }
 }
