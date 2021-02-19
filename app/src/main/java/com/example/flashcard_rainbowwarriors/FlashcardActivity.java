@@ -31,9 +31,9 @@ public class FlashcardActivity extends AppCompatActivity {
         int index = intent.getIntExtra("index", -1);
         Flashcard flashcard = null;
         ArrayList<Flashcard> flashcards = null;
+        flashcards = intent.getParcelableArrayListExtra("flashcards");
 
         if (index >= 0) {
-            flashcards = intent.getParcelableArrayListExtra("flashcards");
             flashcard = flashcards.get(index);
             index++;
             TextView indexOnTotalTextView = findViewById(R.id.indexOnTotalTextView);
@@ -121,26 +121,31 @@ public class FlashcardActivity extends AppCompatActivity {
                 }
 
                 String buttonMessage;
-                //todo add third if for statistic, and rework condition
-                if (finalFlashcards == null) {
+                if (finalIndex < 0) {
                     buttonMessage = "Retour à la liste";
                     FlashcardActivity.classToPass = ListQuestionsActivity.class;
                 } else if (finalIndex == finalFlashcards.size()) {
-                    Intent intent = new Intent(FlashcardActivity.this, StatisticsActivity.class);
-                    intent.putExtra("difficulty", finalFlashcard.difficulty);
-                    intent.putExtra("goodAnswers", goodAnswers[0]);
-                    intent.putExtra("nbrQuestions", 2);
-                    startActivity(intent);
                     buttonMessage = "Suivant";
-                    FlashcardActivity.classToPass = MainActivity.class;
+                    FlashcardActivity.classToPass = StatisticsActivity.class;
                 } else {
                     buttonMessage = "Question suivante";
                     FlashcardActivity.classToPass = FlashcardActivity.class;
                 }
+
                 alertDialog.setNeutralButton(buttonMessage, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (classToPass == ListQuestionsActivity.class) {
+                            Intent intent = new Intent(FlashcardActivity.this, ListQuestionsActivity.class);
+                            intent.putParcelableArrayListExtra("flashcards", finalFlashcards);
+                            startActivity(intent);
+                            finish();
+                        } else if (classToPass == StatisticsActivity.class) {
+                            Intent intent = new Intent(FlashcardActivity.this, StatisticsActivity.class);
+                            intent.putExtra("difficulty", finalFlashcard.difficulty);
+                            intent.putExtra("goodAnswers", goodAnswers[0]);
+                            intent.putExtra("nbrQuestions", finalFlashcards.size());
+                            startActivity(intent);
                             finish();
                         }
                         Intent intent = new Intent(FlashcardActivity.this, classToPass);
