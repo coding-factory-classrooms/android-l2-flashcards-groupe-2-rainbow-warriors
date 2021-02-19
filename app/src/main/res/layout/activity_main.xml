@@ -21,10 +21,8 @@
         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="Commencer le quizz"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:cornerRadius="10dp"
         app:layout_constraintBottom_toTopOf="@+id/listButton"
         app:layout_constraintEnd_toEndOf="@+id/homeImageView"
         app:layout_constraintHorizontal_bias="0.0"
@@ -38,7 +36,6 @@
         android:layout_height="wrap_content"
         android:text="Listes des questions"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:cornerRadius="10dp"
         app:layout_constraintBottom_toTopOf="@+id/aboutButton"
         app:layout_constraintEnd_toEndOf="@+id/startButton"
         app:layout_constraintStart_toStartOf="@+id/startButton"
@@ -50,11 +47,22 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="À propos"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/listButton"
         app:layout_constraintStart_toStartOf="@+id/listButton"
         app:layout_constraintTop_toBottomOf="@+id/listButton" />
+
+    <Button
+        android:id="@+id/darkmodeButton"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+        android:layout_width="32dp"
+        android:layout_height="31dp"
+        android:text="*"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:cornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.98"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
