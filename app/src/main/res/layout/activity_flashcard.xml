@@ -35,12 +35,13 @@
         android:id="@+id/questionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="184dp"
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/answerRadioGroup"
         app:layout_constraintEnd_toEndOf="@+id/playSoundButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/playSoundButton"
-        app:layout_constraintTop_toBottomOf="@+id/questionPictureView" />
+        app:layout_constraintTop_toBottomOf="@+id/playSoundButton" />
 
     <Button
         android:id="@+id/validateAnswerButton"
