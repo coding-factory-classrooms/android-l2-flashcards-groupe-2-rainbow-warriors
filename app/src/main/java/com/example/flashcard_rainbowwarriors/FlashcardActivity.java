@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.GnssAntennaInfo;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
@@ -69,14 +70,6 @@ public class FlashcardActivity extends AppCompatActivity {
             });
         }
 
-
-
-        /*String icon="logo" + cnt;
-        int resID = getResources().getIdentifier(icon, "drawable",getPackageName());
-        imageViewExemple.setImageResource(resID);*/
-
-        //questionPictureView.setImageDrawable(getResources().getDrawable(R.drawable.home_gun));
-
         questionPictureView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,7 +94,6 @@ public class FlashcardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 RadioButton checkedButton = findViewById(radioGroup.getCheckedRadioButtonId());
-                Log.i("testouille", checkedButton + "");
                 if (checkedButton == null){
                     //Toast.makeText(FlashcardActivity.this,"Vous devez sélectionner une réponse pour valider", Toast.LENGTH_SHORT).show();
                     //finish();
@@ -110,7 +102,11 @@ public class FlashcardActivity extends AppCompatActivity {
                     toast.show();
                     return;
                 }
-
+                if (checkedButton == null) {
+                    Toast toast = Toast.makeText(FlashcardActivity.this, "Vous devez sélectionner une réponse pour continuer", Toast.LENGTH_LONG);
+                    toast.show();
+                    return;
+                }
                 Answer rightAnswer = null;
                 Answer selectedAnswer = null;
                 for (Answer answer: finalFlashcard.answers) {
@@ -158,15 +154,16 @@ public class FlashcardActivity extends AppCompatActivity {
                             intent.putExtra("nbrQuestions", finalFlashcards.size());
                             startActivity(intent);
                             finish();
+                        } else {
+                            Intent intent = new Intent(FlashcardActivity.this, classToPass);
+                            intent.putExtra("index", finalIndex);
+                            intent.putExtra("goodAnswers", goodAnswers[0]);
+                            if (finalFlashcards != null) {
+                                intent.putParcelableArrayListExtra("flashcards", finalFlashcards);
+                            }
+                            startActivity(intent);
+                            dialog.dismiss();
                         }
-                        Intent intent = new Intent(FlashcardActivity.this, classToPass);
-                        intent.putExtra("index", finalIndex);
-                        intent.putExtra("goodAnswers", goodAnswers[0]);
-                        if (finalFlashcards != null) {
-                            intent.putParcelableArrayListExtra("flashcards", finalFlashcards);
-                        }
-                        startActivity(intent);
-                        dialog.dismiss();
                     }
                 });
 
