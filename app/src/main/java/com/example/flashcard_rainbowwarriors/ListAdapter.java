@@ -61,7 +61,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
 
         final TextView question;
         final TextView difficulty;
-
+        /*
+         *We associate a view to our viewHolder
+         * */
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             question = itemView.findViewById(R.id.questionItemTextView);

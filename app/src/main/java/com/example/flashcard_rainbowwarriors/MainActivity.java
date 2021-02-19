@@ -18,7 +18,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private boolean isNightMode;
 
@@ -28,72 +28,75 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         /*
-         *Get values from the questions.json in /assets
-         * */
-        ArrayList<Flashcard> easyFlashcards;
-        ArrayList<Flashcard> mediumFlashcards;
-        ArrayList<Flashcard> hardFlashcards;
-        ArrayList<Flashcard> totalFlashcards = new ArrayList<Flashcard>();
-
-        easyFlashcards = parsingFlashcardJSON.retrieveFromJSON("Facile", this);
-        mediumFlashcards = parsingFlashcardJSON.retrieveFromJSON("Moyen", this);
-        hardFlashcards = parsingFlashcardJSON.retrieveFromJSON("Difficile", this);
-
-        easyFlashcards.addAll(mediumFlashcards);//Merge easy and medium difficulty arrays
-        easyFlashcards.addAll(hardFlashcards); //Merge difficulty array
-        totalFlashcards.addAll(easyFlashcards);
-
-        /*
          *Sends the user to the "FlashcardActivity"
          * */
-        findViewById(R.id.startButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                  AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
-                  alertDialog.setTitle("Choisir la difficulté");
-                  String[] items = {"Facile","Moyen","Difficile"};
-                  int checkedItem = 1;
-                  alertDialog.setSingleChoiceItems(items, checkedItem, new DialogInterface.OnClickListener() {
-                      @Override
-                      public void onClick(DialogInterface dialog, int which) {
-                          Toast.makeText(MainActivity.this, items[which], Toast.LENGTH_SHORT).show();
-                          Intent intent = new Intent(MainActivity.this, FlashcardActivity.class);
-                          ArrayList<Flashcard> flashcards = parsingFlashcardJSON.retrieveFromJSON(items[which], MainActivity.this);
-                          Collections.shuffle(flashcards); //Shuffling the flashcards so that the questions are never in the same order
-                          flashcards = splitList(flashcards);
-                          intent.putParcelableArrayListExtra("flashcards", flashcards);
-                          intent.putExtra("index", 0);
-                          startActivity(intent);
-                          dialog.dismiss();
-                      }
-                  });
-                  AlertDialog alert = alertDialog.create();
-                  alert.show();
-                  alert.setCanceledOnTouchOutside(true);
-              }
-        });
 
+        findViewById(R.id.startButton).setOnClickListener(this);
         /*
          *Sends the user to the "ListQuestions" activity
          * */
         Button listOfQuestions = findViewById(R.id.listButton);
-        listOfQuestions.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ListQuestionsActivity.class);
-                intent.putExtra("flashcards", totalFlashcards);
-                startActivity(intent);
-            }
-        });
+        listOfQuestions.setOnClickListener(this);
 
         /*
          *Sends the user to the "AboutActivity"
          * */
         Button aboutButton = findViewById(R.id.aboutButton);
-        aboutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        aboutButton.setOnClickListener(this);
 
+        /*
+         *Modifies UI to either white or black mode for users.
+         * */
+        Button darkMode = findViewById(R.id.darkmodeButton);
+        darkMode.setOnClickListener(this);
+        isNightMode = false;
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.startButton: {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+                alertDialog.setTitle("Choisir la difficulté");
+                String[] items = {"Facile", "Moyen", "Difficile"};
+                int checkedItem = 1;
+                alertDialog.setSingleChoiceItems(items, checkedItem, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(MainActivity.this, items[which], Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(MainActivity.this, FlashcardActivity.class);
+                        ArrayList<Flashcard> flashcards = parsingFlashcardJSON.retrieveFromJSON(items[which], MainActivity.this);
+                        Collections.shuffle(flashcards);
+                        flashcards = splitList(flashcards);
+                        intent.putParcelableArrayListExtra("flashcards", flashcards);
+                        intent.putExtra("index", 0);
+                        startActivity(intent);
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog alert = alertDialog.create();
+                alert.show();
+                alert.setCanceledOnTouchOutside(true);
+                break;
+            }
+
+            case R.id.listButton: {
+                /*
+                 *Get values from the questions.json in /assets
+                 * */
+                ArrayList<Flashcard> totalFlashcards = new ArrayList<Flashcard>();
+
+                for (String difficulty : new String[]{"Facile", "Moyen", "Difficile"}) {
+                    totalFlashcards.addAll(parsingFlashcardJSON.retrieveFromJSON(difficulty, MainActivity.this));
+                }
+                Intent intent = new Intent(MainActivity.this, ListQuestionsActivity.class);
+                intent.putExtra("flashcards", totalFlashcards);
+                startActivity(intent);
+                break;
+            }
+
+            case R.id.aboutButton: {
                 /*Access to the version of the application present in the build.gradle*/
                 Context context = getApplicationContext();
                 PackageManager packageManager = context.getPackageManager();
@@ -110,17 +113,10 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("groupName", "Rainbow Warriors");
                 intent.putExtra("versionName", myVersionName);
                 startActivity(intent);
+                break;
             }
-        });
-        /*
-         *Modifies UI to either white or black mode for users.
-         * */
-        Button darkMode = findViewById(R.id.darkmodeButton);
-        isNightMode = false;
 
-        darkMode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            case R.id.darkmodeButton: {
                 if (isNightMode) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     isNightMode = false;
@@ -129,8 +125,9 @@ public class MainActivity extends AppCompatActivity {
 
                     isNightMode = true;
                 }
+                break;
             }
-        });
+        }
     }
     /*
      *Split the ArrayList of flashcards so that there are only five left
