@@ -1,9 +1,9 @@
 {
   "Facile": [
     {
-      "questionText": "Quelle est cette arme ?",
+      "questionText": "Quel est le modèle de cette arme ?",
       "sourceType": "picture",
-      "sourceName": "QUIZZ_FC_FUSIL_AUTOMATIQUE",
+      "sourceName": "quizz_fc_fusil_automatique",
       "answers": [
         {
           "isAnswer": true,
@@ -20,9 +20,9 @@
       ]
     },
     {
-      "questionText": "Quelle est cette arme ?",
+      "questionText": "Quel est le type de cette arme ?",
       "sourceType": "picture",
-      "sourceName": "QUIZZ_FC_FUSIL_A_VEROU",
+      "sourceName": "quizz_fc_fusil_a_verrou",
       "answers": [
         {
           "isAnswer": false,
@@ -39,9 +39,9 @@
       ]
     },
     {
-      "questionText": "Quelle est cette arme ?",
+      "questionText": "Quel est le type de cette arme ?",
       "sourceType": "picture",
-      "sourceName": "QUIZZ_FC_AK47",
+      "sourceName": "quizz_fc_ak47",
       "answers": [
         {
           "isAnswer": true,
@@ -58,9 +58,9 @@
       ]
     },
     {
-      "questionText": "Quelle est cette arme ?",
+      "questionText": "Quel est le type de cette arme ?",
       "sourceType": "picture",
-      "sourceName": "QUIZZ_FC_FUSIL_A_POMPE",
+      "sourceName": "quizz_fc_fusil_a_pompe",
       "answers": [
         {
           "isAnswer": false,
@@ -75,11 +75,11 @@
           "value": "Fusil à pompe"
         }
       ]
-    }
+    },
     {
-      "questionText": "Quelle est cette arme ?",
+      "questionText": "Quel est le type de cette arme ?",
       "sourceType": "picture",
-      "sourceName": "QUIZZ_FC_PISTOLET",
+      "sourceName": "quizz_fc_pistolet",
       "answers": [
         {
           "isAnswer": false,
@@ -99,9 +99,9 @@
 
   "Moyen": [
     {
-      "questionText": "Quelle est le nom de cette arme ?",
+      "questionText": "Quel est le modèle de cette arme ?",
       "sourceType": "picture",
-      "sourceName": "QUIZZ_FC_M4A1",
+      "sourceName": "quizz_fc_m4a1",
       "answers": [
         {
           "isAnswer": false,
@@ -118,9 +118,9 @@
       ]
     },
     {
-      "questionText": "Quelle est le nom de cette arme ?",
+      "questionText": "Quel est le modèle de cette arme ?",
       "sourceType": "picture",
-      "sourceName": "QUIZZ_FC_SPASS_12",
+      "sourceName": "quizz_fc_spass_12",
       "answers": [
         {
           "isAnswer": false,
@@ -137,9 +137,9 @@
       ]
     },  
     {
-      "questionText": "Quelle est le nom de cette arme ?",
+      "questionText": "Quel est le modèle de cette arme ?",
       "sourceType": "picture",
-      "sourceName": "QUIZZ_FC_M4_SUPRESSED",
+      "sourceName": "quizz_fc_m4_supressed",
       "answers": [
         {
           "isAnswer": true,
@@ -156,9 +156,9 @@
       ]
     },
     {
-      "questionText": "Quelle est le nom de cette arme ?",
+      "questionText": "Quel est le modèle de cette arme ?",
       "sourceType": "picture",
-      "sourceName": "QUIZZ_FC_HK_MP5",
+      "sourceName": "quizz_fc_hk_mp5",
       "answers": [
         {
           "isAnswer": false,
@@ -166,7 +166,7 @@
         },
         {
           "isAnswer": true,
-          "value": "MP540"
+          "value": "HK_MP5"
         },
         {
           "isAnswer": false,
@@ -175,9 +175,9 @@
       ]
     },
     {
-      "questionText": "Quelle est le nom de cette arme ?",
+      "questionText": "Quel est le modèle de cette arme ?",
       "sourceType": "picture",
-      "sourceName": "QUIZZ_FC_UZI",
+      "sourceName": "quizz_fc_uzi",
       "answers": [
         {
           "isAnswer": false,
@@ -192,14 +192,14 @@
           "value": "UZI"
         }
       ]
-    },    
+    }
   ],
 
   "Difficile": [
     {
-      "questionText": "Quelle est cette arme ?",
+      "questionText": "Quel est le modèle de cette arme ?",
       "sourceType": "audio",
-      "sourceName": "AK_47_HIT_S",
+      "sourceName": "ak_47_hit_s",
       "answers": [
         {
           "isAnswer": true,
@@ -216,9 +216,9 @@
       ]
     },
     {
-      "questionText": "Quelle est cette arme ?",
+      "questionText": "Quel est le modèle de cette arme ?",
       "sourceType": "audio",
-      "sourceName": "M4A1",
+      "sourceName": "m4a1",
       "answers": [
         {
           "isAnswer": false,
@@ -235,9 +235,9 @@
       ]
     },
     {
-      "questionText": "Quelle est cette arme ?",
+      "questionText": "Quel est le modèle de cette arme ?",
       "sourceType": "audio",
-      "sourceName": "M4A1_Suppressed",
+      "sourceName": "m4a1_supressed",
       "answers": [
         {
           "isAnswer": false,
@@ -254,9 +254,9 @@
       ]
     },
     {
-      "questionText": "Quelle est cette arme ?",
+      "questionText": "Quel est le modèle de cette arme ?",
       "sourceType": "audio",
-      "sourceName": "HK_MP540_BURST",
+      "sourceName": "hk_mp540_burst",
       "answers": [
         {
           "isAnswer": false,
@@ -273,9 +273,9 @@
       ]
     },    
     {
-      "questionText": "Quelle est cette arme ?",
+      "questionText": "Quel est le modèle de cette arme ?",
       "sourceType": "audio",
-      "sourceName": "SPAS_12_BURST",
+      "sourceName": "spas_12_burst",
       "answers": [
         {
           "isAnswer": false,
@@ -292,9 +292,9 @@
       ]
     },  
     {
-      "questionText": "Quelle est cette arme ?",
+      "questionText": "Quel est le modèle de cette arme ?",
       "sourceType": "audio",
-      "sourceName": "SHOTGUN_BURST",
+      "sourceName": "shotgun_burst",
       "answers": [
         {
           "isAnswer": false,
