@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Point;
 import android.location.GnssAntennaInfo;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +27,7 @@ import java.util.Collections;
 
 public class FlashcardActivity extends AppCompatActivity {
     private static Class<?> classToPass;
+    public static float screen_width;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +55,6 @@ public class FlashcardActivity extends AppCompatActivity {
         ImageView questionPictureView = findViewById(R.id.questionPictureView);
         Button playSoundButton = findViewById(R.id.playSoundButton);
 
-
-        // TODO look for sound or image resource when needed
-
         if (flashcard.sourceType.equals("picture")){
             playSoundButton.setVisibility(View.GONE);
             int picId = getResources().getIdentifier(flashcard.sourceName, "drawable", getPackageName());
@@ -70,10 +71,20 @@ public class FlashcardActivity extends AppCompatActivity {
             });
         }
 
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        screen_width = metrics.widthPixels;
         questionPictureView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                float scale =  FlashcardActivity.screen_width / v.getWidth();
+                if(v.getScaleX() == 1) {
+                    v.setScaleY(scale);
+                    v.setScaleX(scale);
+                }else{
+                    v.setScaleY(1);
+                    v.setScaleX(1);
+                }
             }
         });
 
