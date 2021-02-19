@@ -14,9 +14,9 @@ public class StatisticsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
         Intent intent = getIntent();
-        int goodAnswers = intent.getIntExtra("goodAnswers", 0);
-        int nbrQuestions = intent.getIntExtra("nbrQuestions", 0);
         String difficulty = intent.getStringExtra("difficulty");
+        int goodAnswers = intent.getIntExtra("goodAnswers", 0);
+        int nbrQuestions = intent.getIntExtra("nbrQuestions", 5);
 
         establishStatistics(difficulty, goodAnswers, nbrQuestions);
     }
